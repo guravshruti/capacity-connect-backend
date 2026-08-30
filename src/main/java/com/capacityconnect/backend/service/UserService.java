@@ -5,6 +5,9 @@ import com.capacityconnect.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.http.ResponseEntity;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -15,33 +18,32 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public String signup(User user) {
+    public ResponseEntity<?> signup(User user) {
         if (user.getName() == null || user.getName().trim().isEmpty()) {
-            return "Name is required";
+            return ResponseEntity.badRequest().body("Name is required");
         }
         if (user.getEmail() == null || !user.getEmail().contains("@")) {
-            return "Valid email is required";
+            return ResponseEntity.badRequest().body("Valid email is required");
         }
         if (user.getPassword() == null || user.getPassword().length() < 6) {
-            return "Password must be at least 6 characters";
+            return ResponseEntity.badRequest().body("Password must be at least 6 characters");
         }
-        // Check if email is already registered
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
-            return "Email already registered";
+            return ResponseEntity.badRequest().body("Email already registered");
         }
 
-        // Secure the password before saving (never save plain text passwords)
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        // Default role if not provided
         if (user.getRole() == null || user.getRole().isEmpty()) {
             user.setRole("TRAINEE");
         }
-        // New users start as pending approval
         user.setApprovalStatus("PENDING");
-        userRepository.save(user);
-        return "Signup successful";
+
+        User savedUser = userRepository.save(user);
+        savedUser.setPassword(null);
+        return ResponseEntity.ok(savedUser);
     }
+
     public String updateApprovalStatus(Long userId, String status) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -55,15 +57,20 @@ public class UserService {
         return "User " + status.toLowerCase();
     }
 
-    public String login(String email, String password) {
-        return userRepository.findByEmail(email)
-                .map(user -> {
-                    if (passwordEncoder.matches(password, user.getPassword())) {
-                        return "Login successful";
-                    } else {
-                        return "Invalid password";
-                    }
-                })
-                .orElse("User not found");
+    public ResponseEntity<?> login(String email, String password) {
+        Optional<User> userOpt = userRepository.findByEmail(email);
+
+        if (userOpt.isEmpty()) {
+            return ResponseEntity.badRequest().body("User not found");
+        }
+
+        User user = userOpt.get();
+
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            return ResponseEntity.badRequest().body("Invalid password");
+        }
+
+        user.setPassword(null);
+        return ResponseEntity.ok(user);
     }
 }

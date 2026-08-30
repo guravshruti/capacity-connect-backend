@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins="*")
 @RequestMapping("/api/trainee-profile")
 public class TraineeProfileController {
 
@@ -13,6 +14,7 @@ public class TraineeProfileController {
     private TraineeProfileService traineeProfileService;
 
     // Create or update a trainee's profile
+    @CrossOrigin(origins="*")
     @PostMapping("/{userId}")
     public TraineeProfile saveOrUpdateProfile(@PathVariable Long userId, @RequestBody TraineeProfile profileData) {
         return traineeProfileService.saveOrUpdateProfile(userId, profileData);

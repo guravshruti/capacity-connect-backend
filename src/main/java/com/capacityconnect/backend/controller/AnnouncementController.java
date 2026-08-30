@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins="*")
 @RequestMapping("/api/announcements")
 public class AnnouncementController {
 
     @Autowired
     private AnnouncementService announcementService;
-
+    @CrossOrigin(origins="*")
     @PostMapping("/add")
     public Announcement addAnnouncement(@RequestBody Announcement announcement, @RequestParam String role) {
         if (!role.equals("ADMIN")) {

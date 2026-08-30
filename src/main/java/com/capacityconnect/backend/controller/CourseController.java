@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins="*")
 @RequestMapping("/api/courses")
-@CrossOrigin(origins = "*")
 public class CourseController {
 
     @Autowired
     private CourseService courseService;
-
+    @CrossOrigin(origins="*")
     @PostMapping("/add")
     public Course addCourse(@RequestBody Course course, @RequestParam String role) {
         if (!role.equals("ADMIN")) {

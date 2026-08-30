@@ -14,7 +14,7 @@ public class EnrollmentController {
 
     @Autowired
     private EnrollmentService enrollmentService;
-
+    @CrossOrigin(origins="*")
     @PostMapping("/enroll")
     public Enrollment enroll(@RequestParam Long userId, @RequestParam Long courseId) {
         return enrollmentService.enroll(userId, courseId);

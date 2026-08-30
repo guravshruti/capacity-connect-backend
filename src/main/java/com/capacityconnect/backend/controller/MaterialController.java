@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins="*")
 @RequestMapping("/api/materials")
 public class MaterialController {
 
@@ -15,6 +16,7 @@ public class MaterialController {
     private MaterialService materialService;
 
     // Trainer uploads a new material
+    @CrossOrigin(origins="*")
     @PostMapping
     public Material addMaterial(@RequestBody MaterialRequest request) {
         return materialService.addMaterial(

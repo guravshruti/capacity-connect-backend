@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins="*")
 @RequestMapping("/api/feedback")
 public class FeedbackController {
 
     @Autowired
     private FeedbackService feedbackService;
-
+    @CrossOrigin(origins="*")
     @PostMapping("/add")
     public Feedback addFeedback(@RequestBody Feedback feedback) {
         return feedbackService.addFeedback(feedback);
