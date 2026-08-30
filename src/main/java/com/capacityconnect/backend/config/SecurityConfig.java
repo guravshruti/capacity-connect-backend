@@ -27,18 +27,21 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/api/users/**",
-                                "/api/courses/**",
-                                "/api/enrollments/**",
-                                "/api/materials/**",
-                                "/api/dashboard/**",
-                                "/api/feedback/**",
-                                "/api/announcements/**",
-                                "/api/analytics/**",
-                                "/api/traineeprofile/**"
-                        ).permitAll()
-                        .anyRequest().permitAll()
+                                .requestMatchers(
+                                        "/api/users/**",
+                                        "/api/courses/**",
+                                        "/api/enrollments/**",
+                                        "/api/materials/**",
+                                        "/api/dashboard/**",
+                                        "/api/feedback/**",
+                                        "/api/announcements/**",
+                                        "/api/analytics/**",
+                                        "/api/traineeprofile/**",
+                                        "/api/quiz/**",
+                                        "/api/certificate/**",
+                                        "/api/rating/**"
+                                ).permitAll()
+                                .anyRequest().permitAll()
                 );
         return http.build();
     }
