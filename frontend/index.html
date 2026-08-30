@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capacity Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="auth-shell">
+        <div class="auth-visual">
+            <div class="ring-wrap">
+                <svg viewBox="0 0 200 200" class="capacity-ring">
+                    <circle cx="100" cy="100" r="86" class="ring-track"></circle>
+                    <circle cx="100" cy="100" r="86" class="ring-fill"></circle>
+                </svg>
+                <div class="ring-label">
+                 <span class="ring-caption">Sample course progress</span>
+                </div>
+            </div>
+            <h1>Capacity Connect</h1>
+            <p class="tagline">Where training turns into tracked, visible progress.</p>
+            <ul class="feature-list">
+                <li>Browse and enroll in courses instantly</li>
+                <li>Track your progress on every course</li>
+                <li>See your growth, one module at a time</li>
+            </ul>
+        </div>
+        <div class="auth-form-panel">
+            <div id="login-form" class="form-block">
+                <div class="brand-mark"><span class="brand-dot"></span><span class="brand-word">Capacity Connect</span></div>
+                <h2>Welcome Back</h2>
+                <input type="email" id="login-email" placeholder="Enter your email">
+                <input type="password" id="login-password" placeholder="Enter your password">
+                <br><br>
+                <button onclick="login()">Login</button>
+                <p id="login-message"></p>
+                <p>Don't have an account? <a href="#" id="show-signup">Sign Up</a></p>
+            </div>
+            <div id="signup-form" class="form-block hidden">
+                <div class="brand-mark"><span class="brand-dot"></span><span class="brand-word">Capacity Connect</span></div>
+                <h2>Create Account</h2>
+
+                <input type="text" id="signup-name" placeholder="Enter your name">
+                <input type="email" id="signup-email" placeholder="Enter your email">
+                <input type="password" id="signup-password" placeholder="Create a password">
+                <br><br>
+                <button onclick="signup()">Sign Up</button>
+
+                <p id="signup-message"></p>
+
+                <p>Already have an account? <a href="#" id="show-login">Login</a></p>
+            </div>
+
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capacity Connect - Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <h2>Capacity Connect</h2>
+        <div>
+            <a href="courses.html">Courses</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="profile.html">Profile</a>
+            <a href="materials.html">Materials</a>
+            <a href="#" onclick="logout()">Logout</a>
+        </div>
+    </nav>
+
+    <div class="page-hero">
+        <div class="page-hero-inner">
+            <h1>My Profile</h1>
+            <p>Tell us about your background, skills, and experience.</p>
+        </div>
+    </div>
+
+    <div class="page">
+        <div class="course-card">
+            <span class="field-label">Qualifications</span>
+            <textarea id="qualifications" placeholder="e.g. B.Tech in Computer Science, 2023"></textarea>
+
+            <span class="field-label">Work Experience</span>
+            <textarea id="workExperience" placeholder="e.g. 1 year as a Junior Developer at..."></textarea>
+
+            <span class="field-label">Skills</span>
+            <textarea id="skills" placeholder="e.g. JavaScript, Python, Public Speaking"></textarea>
+
+            <span class="field-label">Interests</span>
+            <textarea id="interests" placeholder="e.g. Marine biology, coastal ecosystems"></textarea>
+
+            <span class="field-label">Certificates</span>
+            <textarea id="certificates" placeholder="e.g. First Aid Certification, 2024"></textarea>
+
+            <br><br>
+            <button onclick="saveProfile()">Save Profile</button>
+            <p id="profile-message"></p>
+        </div>
+    </div>
+
+    <script src="profile.js"></script>
+</body>
+</html>
