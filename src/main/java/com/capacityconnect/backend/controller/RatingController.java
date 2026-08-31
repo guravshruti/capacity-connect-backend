@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins="*")
 @RequestMapping("/api/ratings")
 public class RatingController {
 
@@ -13,6 +14,7 @@ public class RatingController {
     private RatingService ratingService;
 
     // Submit a new rating
+    @CrossOrigin(origins="*")
     @PostMapping("/add")
     public Rating addRating(@RequestParam Long userId, @RequestParam Long courseId, @RequestParam Integer stars) {
         return ratingService.addRating(userId, courseId, stars);

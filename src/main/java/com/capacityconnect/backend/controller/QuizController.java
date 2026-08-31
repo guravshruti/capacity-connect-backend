@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins="*")
 @RequestMapping("/api/quiz")
 public class QuizController {
 
@@ -20,7 +21,7 @@ public class QuizController {
         this.quizService = quizService;
         this.quizQuestionRepository = quizQuestionRepository;
     }
-
+    @CrossOrigin(origins="*")
     @PostMapping("/generate")
     public List<QuizQuestion> generateQuiz(@RequestBody QuizRequest request) {
         return quizService.generateAndSaveQuiz(
@@ -48,6 +49,7 @@ public class QuizController {
     public List<QuizQuestion> getQuizForCourse(@PathVariable Long courseId) {
         return quizQuestionRepository.findByCourseId(courseId);
     }
+    @CrossOrigin(origins="*")
     @PostMapping("/submit")
     public QuizResult submitQuiz(@RequestBody List<AnswerSubmission> submissions) {
         return quizService.submitQuiz(submissions);

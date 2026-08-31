@@ -43,4 +43,9 @@ public class CourseController {
         courseService.deleteCourse(id);
         return "Course deleted successfully";
     }
+    @CrossOrigin(origins="*")
+    @GetMapping("/search")
+    public List<Course> searchCourses(@RequestParam String keyword) {
+        return courseService.searchCourses(keyword);
+    }
 }
