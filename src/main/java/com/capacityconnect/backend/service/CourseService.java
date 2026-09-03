@@ -26,6 +26,7 @@ public class CourseService {
     public List<Course> getAllCourses() {
         return courseRepository.findAll();
     }
+
     public Course updateCourse(Long id, Course updatedCourse) {
         Course course = courseRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Course not found"));
@@ -33,12 +34,22 @@ public class CourseService {
         course.setTitle(updatedCourse.getTitle());
         course.setDescription(updatedCourse.getDescription());
 
+        // NEW FIELDS — without these lines, updates via PUT would silently
+        // wipe/ignore category, level, duration, image, status, completedYear
+        course.setCategory(updatedCourse.getCategory());
+        course.setLevel(updatedCourse.getLevel());
+        course.setDurationHours(updatedCourse.getDurationHours());
+        course.setImageUrl(updatedCourse.getImageUrl());
+        course.setStatus(updatedCourse.getStatus());
+        course.setCompletedYear(updatedCourse.getCompletedYear());
+
         return courseRepository.save(course);
     }
 
     public void deleteCourse(Long id) {
         courseRepository.deleteById(id);
     }
+
     public List<Course> searchCourses(String keyword) {
         return courseRepository.findByTitleContainingIgnoreCase(keyword);
     }
